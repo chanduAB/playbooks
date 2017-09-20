@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  user: root
+  vars:
+     keypair: dansible
+     instance_type: t2.micro
+     image: ami-14a68671
+     region: us-east-2
+  tasks:
+       - name: launch instance
+         ec2:
+            key_name: "{{ keypair }}"
+            group: default
+            instance_type: "{{ instance_type }}"
+            image: "{{ image }}"
+            wait: true
+            region: "{{ region }}"
+            aws_access_key: AKIAJMYKTYILZHWRV7OA
+            aws_secret_key: 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
+         register: ec2
+       - name: print all variables
+         debug: var=ec2
+

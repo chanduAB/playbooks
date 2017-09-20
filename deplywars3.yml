@@ -1,0 +1,18 @@
+---
+- hosts: testservers
+  user: chandu
+  sudo: yes
+  tasks:
+       - name: stop the catalina
+         command: nohup /usr/local/tomcat/apache-tomcat-8.5.20/bin/catalina.sh stop
+       - name: Get dev file
+         s3:
+            bucket: ansible-demo-2017
+            object: /ansible-demo-2017/CounterWebApp.war
+            dest: /etc/ansible/playbooks/CounterWebApp.war
+            mode: get
+            aws_access_key: " AKIAJMYKTYILZHWRV7OA "
+            aws_access_key: " qgxH4Wv/WlDpaONHh0XEwCecCYR4BTS8DeZWK828 "
+         delegate_to: localhost
+       - name: start the catalina
+         command: nohup /usr/local/tomcat/apache-tomcat-8.5.20/bin/catalina.sh start

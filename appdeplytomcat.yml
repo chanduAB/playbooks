@@ -1,0 +1,12 @@
+--- 
+- hosts: testservers 
+  user: chandu
+  sudo: yes 
+  tasks: 
+      - name: stop the catalina 
+        command: nohup /usr/local/tomcat/apache-tomcat-8.5.20/bin/catalina.sh stop 
+      - name: copy the sample war into webapps 
+        copy: src=/mnt/chandra/chandu.war  dest=/usr/local/tomcat/apache-tomcat-8.5.20/webapps/ 
+      - name: start the catalina 
+        command: nohup /usr/local/tomcat/apache-tomcat-8.5.20/bin/catalina.sh start 
+

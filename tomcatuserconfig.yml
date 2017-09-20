@@ -1,0 +1,13 @@
+---
+- hosts: testservers
+  user: chandu
+  sudo: yes
+  tasks:
+      - name: stop the catalina
+        command: nohup /usr/local/tomcat/apache-tomcat-8.5.20/bin/catalina.sh stop
+      - name: config changes in tomcat user file
+        copy: src=tomcat-users.xml dest=/usr/local/tomcat/apache-tomcat-8.5.20/conf/tomcat-users.xml
+      - name: start the catalina
+        command: nohup /usr/local/tomcat/apache-tomcat-8.5.20/bin/catalina.sh start
+
+
