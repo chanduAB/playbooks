@@ -3,16 +3,21 @@
   user: chandu
   sudo: yes
   tasks:
-       - name: stop the catalina
-         command: nohup /usr/local/tomcat/apache-tomcat-8.5.20/bin/catalina.sh stop
-       - name: Get dev file
-         s3:
-            bucket: ansible-demo-2017
-            object: /ansible-demo-2017/CounterWebApp.war
-            dest: /etc/ansible/playbooks/CounterWebApp.war
-            mode: get
-            aws_access_key: " AKIAJMYKTYILZHWRV7OA "
-            aws_access_key: " qgxH4Wv/WlDpaONHh0XEwCecCYR4BTS8DeZWK828 "
-         delegate_to: localhost
-       - name: start the catalina
-         command: nohup /usr/local/tomcat/apache-tomcat-8.5.20/bin/catalina.sh start
+         - name: stop the catalina
+           command: nohup /usr/local/tomcat/apache-tomcat-8.5.20/bin/catalina.sh stop
+         - name: Download war file from S3
+           s3:
+             bucket: ansible-demo-2017
+             object: /CounterWebApp.war
+             mode: get
+             dest: /etc/ansible/playbooks/CounterWebApp.war
+             aws_access_key: AKIAJRWDTZ3JH3I4OJBA
+             aws_secret_key: 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
+           delegate_to: localhost
+         - name: move the war into tomcat
+           copy: src=CounterWebApp.war dest=/usr/local/tomcat/apache-tomcat-8.5.20/webapps/
+         - name: stop the catalina
+           command: nohup /usr/local/tomcat/apache-tomcat-8.5.20/bin/catalina.sh start
+        
+
+
