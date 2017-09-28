@@ -15,8 +15,8 @@
             image: "{{ image }}"
             wait: true
             region: "{{ region }}"
-            aws_access_key: AKIAJMYKTYILZHWRV7OA
-            aws_secret_key: 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
+            aws_access_key: AKIAJDDU64I5KN65P4DQ
+            aws_secret_key: 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
          register: ec2
        - name: print all variables
          debug: var=ec2

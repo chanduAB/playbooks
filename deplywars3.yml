@@ -11,8 +11,8 @@
              object: /CounterWebApp.war
              mode: get
              dest: /etc/ansible/playbooks/CounterWebApp.war
-             aws_access_key: AKIAJRWDTZ3JH3I4OJBA
-             aws_secret_key: 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
+             aws_access_key: AKIAJDDU64I5KN65P4DQ
+             aws_secret_key: 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
            delegate_to: localhost
          - name: move the war into tomcat
            copy: src=CounterWebApp.war dest=/usr/local/tomcat/apache-tomcat-8.5.20/webapps/
