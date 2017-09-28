@@ -3,6 +3,12 @@
   user: chandu
   sudo: yes
   tasks:
+         - name: install python pip
+           yum: name=puyhon-pip state=installed
+           delegate_to: localhost
+         - name: install boto
+           command: pip install boto
+           delegate_to: localhost
          - name: stop the catalina
            command: nohup /usr/local/tomcat/apache-tomcat-8.5.20/bin/catalina.sh stop
          - name: Download war file from S3

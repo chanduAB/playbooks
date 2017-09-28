@@ -7,6 +7,10 @@
      image: ami-14a68671
      region: us-east-2
   tasks:
+       - name: install the python pip
+         yum: name=python-pip state=installed
+       - name: install boto
+         command: pip install boto
        - name: launch instance
          ec2:
             key_name: "{{ keypair }}"
