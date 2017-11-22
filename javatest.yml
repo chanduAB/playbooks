@@ -1,0 +1,10 @@
+---
+- hosts: testservers
+  user: chandu
+  sudo: yes
+  tasks:
+       - name: update the version of java
+         yum: name=java-1.6.0-openjdk.x86_64 state=installed
+         register: output
+       - name: display the output
+         debug: var=output

@@ -1,0 +1,15 @@
+---
+- hosts: testservers
+  user: chandu
+  sudo: yes
+  tasks:
+       - name: install wget
+         yum: name=wget state=installed
+       - name: install nginx
+         yum: name=ngins state=installed
+       - name: install curl 
+         yum: name=curl state=installed
+       - name: install nginx
+         yum: name=nginc state=installed
+       - name: install sql
+         yum: name=sql state=installed

@@ -1,0 +1,16 @@
+---
+- hosts: testservers
+  user: chandu
+  sudo: yes
+  tasks:
+       - name: test for purpose
+         command: echo "haiiiiiiii"
+       - name: Download war file from S3
+         s3:
+             bucket: ansible-demo-2017
+             object: /CounterWebApp.war
+             mode: get
+             aws_access_key: 'AKIAJDDU64I5KN65P4DQ' 
+             aws_secret_key: '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'
+             dest: /etc/ansible/roles/CounterWebApp.war
+         delegate_to: localhost

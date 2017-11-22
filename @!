@@ -3,17 +3,13 @@
   user: chandu
   sudo: yes
   vars:
-     aws_region: us-east-2
-     ec2_id: i-0d985a2c379b3a721
-     keypair: instanceC
+  aws_region: us-east-2
+  ec2_id: i-09cee8f4b1205f7ed
   tasks:
       - name: Terminate {{ec2_id}} instance in {{aws_region}}
         local_action:
                   module: ec2
                   state: 'absent'
-                  key_name: "{{ keypair }}"
-                  aws_access_key: AKIAIXY7KFOT3BHQLHGQ
-                  aws_secret_key: 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
                   region: '{{aws_region}}'
                   instance_ids: '{{ec2_id}}'
 
